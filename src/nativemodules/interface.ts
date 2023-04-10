@@ -50,46 +50,49 @@ export interface WhirlpoolAPI {
 export interface PoolData {
   id: string;
   denomination: number;
-  fee_value: number;
-  must_mix_balance_min: number;
-  must_mix_balance_cap: number;
-  min_anonymity_set: number;
-  min_must_mix: number;
-  tx0_max_outputs: number;
-  n_registered: number;
-  mix_status: MixStatus;
-  elapsed_time: number;
-  n_confirmed: number;
+  feeValue: number;
+  mustMixBalanceMin: number;
+  mustMixBalanceCap: number;
+  minAnonymitySet: number;
+  minMustMix: number;
+  tx0MaxOutputs: number;
+  nbRegistered: number;
+  mixStatus: MixStatus;
+  elapsedTime: number;
+  nbConfirmed: number;
 }
 
 export interface TX0Data {
-  pool_id: string;
-  fee_payment_code: string;
-  fee_value: number;
-  fee_change: number;
-  fee_discount_percent: number;
+  poolId: string;
+  feePaymentCode: string;
+  feeValue: number;
+  feeChange: number;
+  feeDiscountPercent: number;
   message: string;
-  fee_payload_64: string;
-  fee_address: string;
-  fee_output_signature: string;
+  feePayload64: string;
+  feeAddress: string;
+  feeOutputSignature: string;
 }
 
 export interface Preview {
-  premix_value: number;
-  n_premix_outputs: number;
-  miner_fee: number;
-  coordinator_fee: number;
+  premixValue: number;
+  nPremixOutputs: number;
+  minerFee: number;
+  coordinatorFee: {
+    coordinator?: Array<any>; // value: number; address: string
+    depositBack?: number;
+  };
   change: number;
 }
 
 /// Used during TX0 fee computation. Needed because different script types have different lengths.
 export interface InputStructure {
-  n_p2pkh_inputs: number;
-  n_p2sh_p2wpkh_inputs: number;
-  n_p2wpkh_inputs: number;
+  nP2pkhInputs: number;
+  nP2shP2wpkhInputs: number;
+  nP2wpkhInputs: number;
 }
 
-export interface BitcoinRustInput {
+export interface WhirlpoolInput {
   /// Outpoint used by this input.
   outpoint: {
     /// The referenced transaction's txid.
